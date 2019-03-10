@@ -14,10 +14,14 @@ const app = express();
 
 const indexHtml = readFileSync(__dirname + '/dist/angular-universial/index.html', 'utf-8').toString();
 
-app.route('/').get((req, res) => {
+app.get('*.*', express.static(__dirname + '/dist/angular-universial', {
+  maxAge: '1y'
+}));
+
+app.route('*').get((req, res) => {
   renderModuleFactory(AppServerModuleNgFactory, {
     document: indexHtml,
-    url: '/',
+    url: 'req.url',
     extraProviders: [
       provideModuleMap(LAZY_MODULE_MAP)
     ]
@@ -27,10 +31,6 @@ app.route('/').get((req, res) => {
       res.sendStatus(500);
     });
 });
-
-app.get('*.*', express.static(__dirname + '/dist/angular-universial', {
-  maxAge: '1y'
-}));
 
 app.listen(9000, () => {
   console.log('Angular Universal Node Express server listening on http://localhost:9000');
