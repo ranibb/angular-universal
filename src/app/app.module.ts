@@ -36,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     CourseDialogComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
