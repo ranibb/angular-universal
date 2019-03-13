@@ -44,6 +44,13 @@ export class CourseComponent implements OnInit {
     this.title.setTitle(this.course.description);
     this.meta.updateTag({name: 'description', content: this.course.longDescription});
 
+    this.meta.addTag({name: 'twitter:card', content: 'summary'});
+    this.meta.addTag({name: 'twitter:site', content: '@AngularUniv'});
+    this.meta.addTag({name: 'twitter:title', content: this.course.description});
+    this.meta.addTag({name: 'twitter:description', content: this.course.description});
+    this.meta.addTag({name: 'twitter:text:description', content: this.course.description});
+    this.meta.addTag({name: 'twitter:image', content: 'https://avatars3.githubusercontent.com/u/16628445?v=3&s=200'});
+
   }
 
 
