@@ -36,3 +36,11 @@ The meta tags of the particular case of twitter crawler, Facebook crawler and ot
 ## Angular Universal Application Shell
 
 Application shell is the the initial HTML that we want to send in the first request that we make to the server. To do thatn we need to speicify to the angular universal rendering engine, what parts of the page should be rendered by the server side engine and which part of the page should be left to the client side application for rendering.
+
+## Angular Universal State Transfer API
+
+As the application is being server-side rendered, you will notice that when the application bootstrap itself on the client side, it will also re-emit all the Ajax request to fetch the data of the application. This is something that we would like to avoid because when the application bootstrap itself on the client, there is no need to call the server again and fetch the same data.
+
+The state transfer API is going to allow us to take the data that corresponds to a given component and attach it to the page itself. Thus, eliminating what is essentially a duplicate HTTP request.
+
+In our case, we have managed to pass the course data containing the title and a thumbnail to the router and ultimately to the component without having to call again our backend server. What happened is that the data was retrieved from the state transfer service and the service retrieved the data directly from the content of the page.

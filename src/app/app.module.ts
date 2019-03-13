@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -61,7 +61,8 @@ import {AppShellRenderDirective} from './directives/app-shell-render.directive';
     MatDatepickerModule,
     MatMomentDateModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserTransferStateModule
   ],
   providers: [
     CoursesService,
