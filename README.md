@@ -7,8 +7,24 @@
 
 https://angular.io/guide/universal
 
-  ng run angular-universal:server
+## NgUniversal Express Engine
 
-or
+This is an express engine that uses angular universal internally as the rendering engine.
 
-  ng run build:server-app:prod
+To build the server application, use the auxiliary npm task:
+
+```
+npm run build:server-app:prod
+```
+
+To build the client production application, use the auxiliary npm task:
+
+```
+npm run build:client-app:prod
+```
+
+In order to run the server, use the auxiliary npm task:
+
+```
+npm run start:express-server
+```

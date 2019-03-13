@@ -1,8 +1,11 @@
+import { ngExpressEngine } from '@nguniversal/express-engine';
+import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 import { renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+
 import * as express from 'express';
 import { readFileSync } from 'fs';
 
@@ -14,22 +17,27 @@ const app = express();
 
 const indexHtml = readFileSync(__dirname + '/dist/angular-universial/index.html', 'utf-8').toString();
 
-app.get('*.*', express.static(__dirname + '/dist/angular-universial', {
+const distFolder = __dirname + '/dist/angular-universial';
+
+// define the engine
+app.engine('html', ngExpressEngine({
+  bootstrap: AppServerModuleNgFactory,
+  providers: [provideModuleMap(LAZY_MODULE_MAP)]
+}));
+
+// use the engine to render HTML responses
+app.set('view engine', 'html');
+app.set('views', distFolder);
+
+// Mapping between incoming HTTP request and the engine itself (*.js, *.css, etc)
+app.get('*.*', express.static(distFolder, {
   maxAge: '1y'
 }));
 
-app.route('*').get((req, res) => {
-  renderModuleFactory(AppServerModuleNgFactory, {
-    document: indexHtml,
-    url: 'req.url',
-    extraProviders: [
-      provideModuleMap(LAZY_MODULE_MAP)
-    ]
-  }).then(html => res.status(200).send(html))
-    .catch(err => {
-      console.log(err);
-      res.sendStatus(500);
-    });
+// The universal rendering itself.
+app.get('*', (req, res) => {
+  // Identify which url is currently being rendered. is this the (/course) or the root (/)
+  res.render('index', {req});
 });
 
 app.listen(9000, () => {
