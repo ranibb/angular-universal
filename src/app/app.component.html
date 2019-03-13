@@ -20,5 +20,11 @@
       <mat-icon>menu</mat-icon>
     </button>
   </mat-toolbar>
-  <router-outlet></router-outlet>
+  <ng-container>
+    <router-outlet></router-outlet>
+  </ng-container>
+  <!-- An auxiliary structural directive to Specify what to be rendered in place of the content of the main page. -->
+  <div class="spinner-container" *appShellRender>
+    <mat-spinner></mat-spinner>
+  </div>
 </mat-sidenav-container>

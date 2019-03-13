@@ -1,4 +1,5 @@
-<div class="course">
+<!-- An auxiliary structural directive to specify that this div should not be rendered in the server side. -->
+<div class="course" *appShellNoRender>
   <h2>{{course?.description}}</h2>
   <img class="course-thumbnail" [src]="course?.iconUrl">
   <div class="spinner-container" *ngIf="dataSource.data?.length == 0">

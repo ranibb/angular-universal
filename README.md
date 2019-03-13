@@ -32,3 +32,7 @@ npm run start:express-server
 If we have pages on the application that we want to rank on search engines, then we also need to provide a title and a meta description. Most search engines will need a server side rendered title and meta description, but that is however not the case of the google search engine. With the google search engine, you can set the title of the meta description dynamically at run time using JavaScript and the correct tag will still be shown on the search results.
 
 The meta tags of the particular case of twitter crawler, Facebook crawler and other social media platforms need to come from the server. These crawlers are in general not compatible with single page applications. This means, rendering these meta tags at the level of the server is the only way to make our website compatible with the crawlers of these social media platforms.
+
+## Angular Universal Application Shell
+
+Application shell is the the initial HTML that we want to send in the first request that we make to the server. To do thatn we need to speicify to the angular universal rendering engine, what parts of the page should be rendered by the server side engine and which part of the page should be left to the client side application for rendering.
