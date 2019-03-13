@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material';
+import { Title, Meta } from '@angular/platform-browser';
 
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
@@ -24,8 +25,9 @@ export class CourseComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private coursesService: CoursesService) {
-
+    private coursesService: CoursesService,
+    private title: Title,
+    private meta: Meta) {
   }
 
 
@@ -38,6 +40,9 @@ export class CourseComponent implements OnInit {
 
     this.coursesService.findAllCourseLessons(this.course.id)
       .subscribe(lessons => this.dataSource.data = lessons);
+
+    this.title.setTitle(this.course.description);
+    this.meta.updateTag({name: 'description', content: this.course.longDescription});
 
   }
 
