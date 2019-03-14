@@ -44,3 +44,30 @@ As the application is being server-side rendered, you will notice that when the 
 The state transfer API is going to allow us to take the data that corresponds to a given component and attach it to the page itself. Thus, eliminating what is essentially a duplicate HTTP request.
 
 In our case, we have managed to pass the course data containing the title and a thumbnail to the router and ultimately to the component without having to call again our backend server. What happened is that the data was retrieved from the state transfer service and the service retrieved the data directly from the content of the page.
+
+## Angular Universal Production Deployment
+
+We're going to be deploying our angular universal application as a firebase cloud function. We're going to be deploying the bundles using firebase hosting.
+
+**step 1:** Install firebase tools:
+
+    npm install -g firebase-tools
+
+**step2:** Identify who is running the command line interface by doing a Firebase logging, this is going to promt you for your Google account email and password. After you fill those, your CLI will be authenticated.
+
+    firebase login
+
+**step 3:** Initialize our project in order to support firebase hosting. So, hosting is for serving static files.
+
+    firebase init hosting
+
+So, what we have configured so far, is the configuration necessary for deploying this application in single page mode without server-side rendering.
+
+**step 4:** Do initial deployment even though we are not yet using server side rendering
+
+    firebase deploy
+
+You can use the following command to open the site:
+
+    firebase open hosting:site
+
