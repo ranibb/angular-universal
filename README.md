@@ -71,3 +71,15 @@ You can use the following command to open the site:
 
     firebase open hosting:site
 
+**step 5:** Deploying our application as a firebase cloud function
+
+    firebase init functions
+
+Firebase cloud function is a small server-side function running on firebase servers that can perform some auxiliary tasks to our single page application. It's typically used for processing images or doing operations that can only be done one a backend such as processing payments.
+
+**step 6:** Delete the index.html file from the dist/angular-universal folder. This way our redirect will redirect everything to the firebase cloud function including the root url of the application.
+
+**step 7:** Do a firebase deploy again to make sure indeed the request to our application are being redirected to the firebase cloud function including the request for the root url of the application
+
+    firebase deploy
+
