@@ -15,9 +15,9 @@ enableProdMode();
 
 const app = express();
 
-const indexHtml = readFileSync(__dirname + '/dist/angular-universial/index.html', 'utf-8').toString();
+const indexHtml = readFileSync(__dirname + '/dist/angular-universal/index.html', 'utf-8').toString();
 
-const distFolder = __dirname + '/dist/angular-universial';
+const distFolder = __dirname + '/dist/angular-universal';
 
 // define the engine
 app.engine('html', ngExpressEngine({
